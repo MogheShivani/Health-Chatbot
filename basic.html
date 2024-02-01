@@ -8,6 +8,11 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
         }
 
         header, footer {
@@ -15,14 +20,46 @@
             color: #fff;
             text-align: center;
             padding: 10px;
-        }
-
-        h4{
-            color: red;
+            width: 100%;
         }
 
         main {
             padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #chat-container {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: auto;
+            max-height: 300px;
+            background-color: #f9f9f9;
+        }
+
+        #loading-indicator {
+            display: none;
+            margin-top: 10px;
+            color: #888;
+        }
+
+        h4 {
+            color: red;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #5862ce;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -30,21 +67,35 @@
 
     <header>
         <h1>Welcome to Health Care Bot!!</h1>
-        
     </header>
 
     <main>
         <p>This is a bot created using Botpress.</p>
         <p>Here, we are suggesting simple Ayurvedic remedies for not too severe diseases.</p>
-        <h4>Disclaimer: this project is only for educational purpose, before following or using specified Ayurvedic treatment, please concern a doctor!!</h4>
+        <h4>Disclaimer: this project is only for educational purposes. Before following or using specified Ayurvedic treatment, please consult with a doctor!!</h4>
+
+        <div id="chat-container"></div>
+        <div id="loading-indicator">Loading...</div>
+        <button onclick="triggerBotResponse()">Get Bot Response</button>
     </main>
 
     <footer>
         <p>&copy; Let's Learn!!!</p>
     </footer>
+
     <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
     <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
     <script src="https://mediafiles.botpress.cloud/496d57f9-a3b6-426c-bf6b-ea42a6fb5b58/webchat/config.js" defer></script>
+
+    <script>
+        function triggerBotResponse() {
+            document.getElementById('loading-indicator').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('chat-container').innerHTML += '<p>Bot: Hi!! Please click on Bot icon!!</p>';
+                document.getElementById('loading-indicator').style.display = 'none';
+            }, 1500); // Simulating a delayed bot response
+        }
+    </script>
 
 </body>
 </html>
